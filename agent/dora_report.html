@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport DORA</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 30px 40px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header p {
+            margin: 5px 0 0 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        .content {
+            padding: 20px 40px;
+        }
+        h1 { color: #003366; font-size: 20px; border-bottom: 2px solid #003366; padding-bottom: 5px; }
+        h2 { color: #003366; font-size: 16px; margin-top: 25px; }
+        h3 { color: #0055a4; font-size: 14px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background-color: #003366;
+            color: white;
+            padding: 8px;
+            text-align: left;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        .footer {
+            background-color: #f5f5f5;
+            border-top: 2px solid #003366;
+            padding: 15px 40px;
+            font-size: 10px;
+            color: #666;
+            margin-top: 30px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .severity-critical { color: #cc0000; font-weight: bold; }
+        .severity-major { color: #ff6600; font-weight: bold; }
+        .severity-minor { color: #ffaa00; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏦 RAPPORT D'INCIDENT DORA</h1>
+        <p>Digital Operational Resilience Act — EU Regulation 2022/2554</p>
+        <p>Généré le : 16/08/2026 à 16:08:54</p>
+        <p>Système : Spring Boot Microservices Banking Application</p>
+    </div>
+    <div class="content">
+        <p>En tant qu'expert en conformité DORA, j'ai analysé les données fournies pour générer le rapport d'incident suivant.</p>
+
+<hr />
+
+<h1 id="rapport-dincident-dora">RAPPORT D'INCIDENT DORA</h1>
+
+<h2 id="1-resume-executif">1. Résumé Exécutif</h2>
+
+<ul>
+<li><strong>Description de l'incident :</strong> L'infrastructure bancaire a connu une période d'instabilité significative, caractérisée par la panne intermittente du service de logging et monitoring (Loki) et un nombre anormalement élevé de redémarrages pour l'ensemble des pods des services bancaires critiques au sein du cluster Kubernetes. Bien que les services soient actuellement en état "Running", la fréquence des redémarrages indique une résilience opérationnelle dégradée.</li>
+<li><strong>Date et heure de détection :</strong> 2026-08-16T13:44:42 (première alerte "ServiceDown" pour Loki).</li>
+<li><strong>Sévérité :</strong> <strong>Majeur</strong>. L'incident est classifié comme Majeur en raison de l'impact direct sur la capacité de monitoring (Loki étant en panne) et de l'impact potentiel sur la disponibilité et la performance de tous les services bancaires critiques (démontré par les redémarrages fréquents des pods). Une telle instabilité systémique représente un risque élevé pour la continuité des opérations et la confiance des clients.</li>
+<li><strong>Services impactés :</strong>
+<ul>
+<li><strong>Directement :</strong> Service de logging et monitoring (Loki).</li>
+<li><strong>Indirectement mais potentiellement gravement :</strong> Tous les services bancaires critiques hébergés sur Kubernetes, incluant <code>account-service</code>, <code>api-gateway</code>, <code>fund-transfer</code>, <code>mysql</code>, <code>sequence-generator</code>, <code>service-registry</code>, <code>transaction-service</code>, et <code>user-service</code>, en raison de redémarrages fréquents de leurs pods.</li>
+</ul></li>
+</ul>
+
+<h2 id="2-timeline-detaillee">2. Timeline Détaillée</h2>
+
+<ul>
+<li><strong>2026-08-16T13:44:42.520665 :</strong> Première détection d'une panne du service <code>loki-0</code> (ServiceDown) par Prometheus. Trois alertes consécutives sont enregistrées en quelques secondes.</li>
+<li><strong>2026-08-16T13:49:25.622643 :</strong> Deuxième série d'alertes "ServiceDown" pour <code>loki-0</code> détectée par Prometheus.</li>
+<li><strong>Période continue (24h) :</strong> Les données indiquent que tous les pods des services bancaires critiques ont subi un nombre élevé de redémarrages (entre 10 et 18 redémarrages par pod), suggérant une instabilité persistante du cluster Kubernetes ou des applications elles-mêmes.</li>
+<li><strong>Période continue (24h) :</strong> Plusieurs événements "RegisteredNode" pour le nœud <code>dora-cluster-control-plane</code> sont observés, ce qui pourrait indiquer une instabilité du plan de contrôle ou des redémarrages de nœuds.</li>
+<li><strong>Escalade :</strong> Les alertes de sévérité "ERROR" pour Loki et l'observation de redémarrages massifs de pods auraient dû déclencher une escalade immédiate vers les équipes d'opérations et d'ingénierie.</li>
+<li><strong>Résolution :</strong> Les alertes "ServiceDown" pour Loki semblent avoir cessé au moment de la collecte des données, mais la cause sous-jacente des redémarrages des pods n'est pas résolue et l'instabilité persiste. L'incident est considéré comme partiellement résolu pour la partie monitoring, mais l'instabilité systémique demeure.</li>
+</ul>
+
+<h2 id="3-analyse-de-limpact">3. Analyse de l'Impact</h2>
+
+<ul>
+<li><strong>Services bancaires affectés :</strong>
+<ul>
+<li>La panne intermittente de Loki a directement affecté la capacité de l'organisation à collecter, stocker et analyser les logs, ce qui entrave la détection rapide et le diagnostic d'autres problèmes.</li>
+<li>Les redémarrages fréquents (10 à 18 fois en 24h) de tous les pods des services bancaires critiques (gestion de comptes, transferts de fonds, base de données MySQL, etc.) impliquent des périodes d'indisponibilité brèves mais répétées pour chaque instance de service. Bien que les systèmes de haute disponibilité puissent masquer une partie de cet impact aux utilisateurs finaux, cela dégrade la performance globale, la latence et la fiabilité perçue.</li>
+</ul></li>
+<li><strong>Durée d'indisponibilité estimée :</strong>
+<ul>
+<li>Pour Loki : Plusieurs courtes périodes d'indisponibilité (quelques secondes à minutes) pour le service de logging.</li>
+<li>Pour les services</li>
+</ul></li>
+</ul>
+
+    </div>
+    <div class="footer">
+        <p>Document confidentiel — Rapport d'incident TIC conforme au règlement DORA (UE) 2022/2554</p>
+        <p>Articles 17 (Gestion des incidents), 18 (Classification), 19 (Notification aux autorités)</p>
+        <p>Généré automatiquement par le système DORA Evidence Collector</p>
+    </div>
+</body>
+</html>
