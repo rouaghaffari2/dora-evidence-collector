@@ -20,5 +20,5 @@ variable "cluster_name" {
 variable "replica_count" {
   description = "Nombre de replicas par service"
   type        = number
-  default     = 2
+  default     = 1
 }
