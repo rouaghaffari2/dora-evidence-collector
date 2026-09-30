@@ -19,9 +19,9 @@ def collect_infrastructure_data():
         data['incident_timeline'] = json.loads(get_incident_timeline(hours=24))
         data['errors'] = json.loads(get_events_by_severity("ERROR"))
         data['warnings'] = json.loads(get_events_by_severity("WARNING"))
-        print("✅ Données SQLite collectées")
+        print("Données SQLite collectées")
     except Exception as e:
-        print(f"❌ SQLite error: {e}")
+        print(f" SQLite error: {e}")
         data['stats'] = {}
         data['incident_timeline'] = []
         data['errors'] = []
@@ -32,9 +32,9 @@ def collect_infrastructure_data():
         data['pod_status'] = json.loads(get_pod_status('default'))
         data['crashed_pods'] = json.loads(get_crashed_pods('default'))
         data['k8s_events'] = json.loads(get_recent_events('default'))
-        print("✅ Données K8s collectées")
+        print(" Données K8s collectées")
     except Exception as e:
-        print(f"❌ K8s error: {e}")
+        print(f" K8s error: {e}")
         data['pod_status'] = []
         data['crashed_pods'] = []
         data['k8s_events'] = []
@@ -43,9 +43,9 @@ def collect_infrastructure_data():
         from mcp_argocd_server import get_last_deployment, get_sync_status
         data['last_deployment'] = json.loads(get_last_deployment('banking-app'))
         data['sync_status'] = json.loads(get_sync_status('banking-app'))
-        print("✅ Données ArgoCD collectées")
+        print(" Données ArgoCD collectées")
     except Exception as e:
-        print(f"❌ ArgoCD error: {e}")
+        print(f" ArgoCD error: {e}")
         data['last_deployment'] = {}
         data['sync_status'] = {}
 
@@ -134,7 +134,7 @@ Sur la base de ces données, génère un rapport d'incident DORA complet et stru
 
 Génère ce rapport de manière professionnelle, précise et conforme aux exigences réglementaires DORA."""
 
-    print("\n🔍 Analyse par Gemini en cours...\n")
+    print("\n Analyse par Gemini en cours...\n")
     print("=" * 60)
 
     full_report = ""
@@ -155,7 +155,7 @@ Génère ce rapport de manière professionnelle, précise et conforme aux exigen
         f.write(full_report)
 
     print("\n\n" + "=" * 60)
-    print(f"✅ Rapport DORA généré et sauvegardé : {report_path}")
+    print(f Rapport DORA généré et sauvegardé : {report_path}")
 
 if __name__== "__main__":
     run_dora_agent()
