@@ -98,7 +98,7 @@ def generate_dora_pdf():
 </head>
 <body>
     <div class="header">
-        <h1>🏦 RAPPORT D'INCIDENT DORA</h1>
+        <h1>RAPPORT D'INCIDENT DORA</h1>
         <p>Digital Operational Resilience Act — EU Regulation 2022/2554</p>
         <p>Généré le : {datetime.now().strftime('%d/%m/%Y à %H:%M:%S')}</p>
         <p>Système : Spring Boot Microservices Banking Application</p>
@@ -117,16 +117,16 @@ def generate_dora_pdf():
     # Sauvegarder le HTML
     with open(report_html_path, "w", encoding="utf-8") as f:
         f.write(html_template)
-    print(f"✅ HTML généré : {report_html_path}")
+    print(f" HTML généré : {report_html_path}")
 
     # Convertir en PDF avec weasyprint
     try:
       import pdfkit
       pdfkit.from_file(report_html_path, report_pdf_path)
-      print(f"✅ PDF généré : {report_pdf_path}")
+      print(f" PDF généré : {report_pdf_path}")
     except Exception as e:
-      print(f"❌ Erreur PDF: {e}")
-      print(f"💡 Le rapport HTML est disponible : {report_html_path}")
+      print(f" Erreur PDF: {e}")
+      print(f"Le rapport HTML est disponible : {report_html_path}")
 if __name__== "__main__":
     generate_dora_pdf()
 
