@@ -52,10 +52,10 @@ def collect_infrastructure_data():
     return data
 
 def run_dora_agent():
-    print("🤖 Démarrage de l'Agent DORA avec Gemini")
+    print(" Démarrage de l'Agent DORA avec Gemini")
     print("=" * 60)
 
-    print("\n📡 Collecte des données infrastructure...")
+    print("\n Collecte des données infrastructure...")
     infra_data = collect_infrastructure_data()
 
     prompt = f"""Tu es un expert en conformité DORA (Digital Operational Resilience Act) de l'Union Européenne.
